@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>{$title}</title>
+    <meta name="description" content="ThinkCMF5自定义表单系统">
+    <meta name="keywords" content="ThinkCMF5自定义表单系统">
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="warning"><a>{$title} -> 编辑{$issueform}</a><a href="{:cmf_plugin_url('bslform://AdminIndex/index')}">返回表单列表页</a></li>
+    </ul>
+    <div class="common-form">
+        <div class="well">
+
+            <form class="form-horizontal" method="post" action="{:cmf_plugin_url('bslform://AdminIndex/issueFieldDone')}">
+                <div class="form-group"></div>
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <input type="hidden" readonly="readonly" name="issueform" class="form-control" id="inputDiyid3" value="{$issueform}">
+                        <input type="hidden" readonly="readonly" name="issueformid" class="form-control" id="inputDiyid3" value="{$diyid}">
+                    </div>
+                </div>
+                <span>
+                   
+                </span>
+                <foreach name="issueDate" id="vo" key="k">
+                <div class="form-group">
+                    <label for="{$issueDate[$k]['COLUMN_NAME']}" class="col-sm-2 control-label">{$issueDate[$k]['COLUMN_COMMENT']}：</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="{$issueDate[$k]['COLUMN_NAME']}" class="form-control" id="{$issueDate[$k]['COLUMN_NAME']}" value="">
+                    </div>
+                </div>
+                </foreach>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-default" type="submit" value="提交">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>ThinkCMF5自定义表单系统</title>
+    <meta name="description" content="ThinkCMF5自定义表单系统">
+    <meta name="keywords" content="ThinkCMF5自定义表单系统">
+    <style>
+    .column1{
+      display: none;
+    }
+    </style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="warning col-sm-6"><a>自定义表单添加 -> 编辑自定义表单{$fieldid}    </a><a href="{:cmf_plugin_url('bslform://AdminIndex/index')}">返回表单列表页</a></li>
+    </ul>
+    <div class="common-form">
+        <div class="well">
+            <form class="form-horizontal" method="post" action="{:cmf_plugin_url('bslform://AdminIndex/editFormDone')}">
+                <div class="form-group"></div>
+                <div class="form-group">
+                  <label for="inputDiyid3" class="col-sm-2 control-label">diyid:</label>
+                  <div class="col-sm-1">
+                    <input type="text" readonly="readonly" name="diyid" class="form-control" id="inputDiyid3" value="{$editdata['diyid']}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">自定义表单名称</label>
+                  <div class="col-sm-2">
+                    <input type="text" name="name" class="form-control" id="inputPassword3" value="自定义表单1">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputTable3" class="col-sm-2 control-label">数据表:</label>
+                  <div class="col-sm-2">
+                    <input type="text" readonly="readonly" name="table" class="form-control" id="inputTable3" value="cmf_diyform{$editdata['diyid']}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputInfo3" class="col-sm-2 control-label">字段配置</label>
+                  <div class="col-sm-5" style="line-height: 35px">
+                    <input type="button" value="添加新字段" onclick="location.href='{:cmf_plugin_url("bslform://AdminIndex/addField",["diyid" => $editdata["diyid"] ])}'">
+                  </div>
+                </div> 
+                
+                <div class="form-group col-sm-12 control-label">
+                  <table class="table">
+                    <tbody>
+                      <tr align="center" bgcolor="#FBFCE2" height="26">
+                       <td width="28%">表单提示文字</td>
+                       <td width="18%">数据字段名</td>
+                       <td width="20%">数据类型</td>
+                       <td width="18%">表单类型</td>
+                       <td>维护</td>
+                   </tr>
+                   <foreach name="fielddate" id="vo">
+                   <tr align="center" bgcolor="#FFFFFF" height="24" class="column{$vo.ORDINAL_POSITION}">
+                       <td>{$vo.COLUMN_COMMENT}</td>
+                       <td>{$vo.COLUMN_NAME}</td>
+                       <td>{$vo.COLUMN_TYPE}</td>
+                       <td>自动表单</td>
+                       <td>
+                         <a href="{:cmf_plugin_url('Bslform://AdminIndex/editField',['editFormId'=>$fieldid,'editFormStr'=>$vo.COLUMN_NAME])}">[修改]</a>
+                         <a href="{:cmf_plugin_url('Bslform://AdminIndex/deleteField',['editFormId'=>$fieldid,'editFormStr'=>$vo.COLUMN_NAME])}">[删除]</a>
+                       </td>
+                   </tr>
+                  </foreach>
+                 </tbody></table>
+                </div> 
+                
+                <div class="form-group">
+                        <label for="inputposttemplate3" class="col-sm-2 control-label">发布模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="posttemplate" class="form-control" id="inputposttemplate3" value="post_diyform1.htm">
+                        </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="inputlisttemplate3" class="col-sm-2 control-label">列表模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="listtemplate" class="form-control" id="inputlisttemplate3" value="list_diyform1.htm">
+                        </div>
+                </div>
+
+                
+                <div class="form-group">                        <label for="inputviewtemplate3" class="col-sm-2 control-label">内容模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="viewtemplate" class="form-control" id="inputviewtemplate3" value="view_diyform1.htm">
+                        </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="inlineRadio1" class="col-sm-2 control-label">前台列表和内容页公开？</label>
+                        <div class="col-sm-6">
+                                <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio1" value="0"> 完全公开
+                                      </label>
+                                      <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio2" value="1"> 公开审核过的
+                                      </label>
+                                      <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio3" value="2"> 不公开
+                                      </label>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-default" type="submit" value="确定">
+                  </div>
+                </div>
+              </form>
+              
+
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+<script>
+  $("#inputPassword3").val("{$editdata['name']}");
+  $("#inputposttemplate3").val("{$editdata['posttemplate']}");
+  $("#inputlisttemplate3").val("{$editdata['listtemplate']}");
+  $("#inputviewtemplate3").val("{$editdata['viewtemplate']}");
+  var ifcheck = {$editdata['public']};
+  if(ifcheck == 0){
+    $("#inlineRadio1").attr('checked','true');
+  }else if (ifcheck == 1) {
+    $("#inlineRadio2").attr('checked','true');
+  }else if (ifcheck == 2) {
+    $("#inlineRadio3").attr('checked','true');
+  }
+</script>
+</body>
+</html>

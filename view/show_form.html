@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>{$title}</title>
+    <meta name="description" content="ThinkCMF5自定义表单系统">
+    <meta name="keywords" content="ThinkCMF5自定义表单系统">
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="warning"><a>{$title} -> 编辑{$issueform}</a><a href="{:cmf_plugin_url('bslform://AdminIndex/index')}">返回表单列表页</a></li>
+    </ul>
+    <div class="common-form">
+     
+        <div class="col-md-12 ">
+                <foreach name="showform" id="vo" key="k">
+                    <div class="col-md-7" style="padding-top: 20px;border-bottom: 1px solid #000;">
+                        <div class="col-md-3">
+                                <foreach name="showformkey" id="vok" key="kk">
+                                        <div>
+                                            <p>{$showformkey[$kk]['COLUMN_COMMENT']}:</p> 
+                                        </div>
+                                </foreach>
+                        </div>
+                        <div class="col-md-3">
+                            <foreach name="showformkey" id="vokk" key="kkk">
+                            <div><p>{$showform[$k][$showformkey[$kkk]['COLUMN_NAME']]}</p></div>
+                            </foreach>
+                        </div>
+                    </div>
+                </foreach>
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>

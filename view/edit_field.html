@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>{$title}</title>
+    <meta name="description" content="ThinkCMF5自定义表单系统">
+    <meta name="keywords" content="ThinkCMF5自定义表单系统">
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="warning"><a>{$title} -> 编辑自定义表单{$diyid}</a><a href="{:cmf_plugin_url('bslform://AdminIndex/index')}">返回表单列表页</a></li>
+    </ul>
+    <div class="common-form">
+        <div class="well">
+
+            <form class="form-horizontal" method="post" action="{:cmf_plugin_url('bslform://AdminIndex/editFieldDone')}">
+                <div class="form-group"></div>
+                <div class="form-group">
+                  <div class="col-sm-1">
+                    <input type="hidden" readonly="readonly" name="diyid" class="form-control" id="inputDiyid3" value="{$diyid}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tishi" class="col-sm-2 control-label">发表提示文字（中文）：</label>
+                    <div class="col-sm-2">
+                      <input type="text" name="tishi" class="form-control" id="tishi" value="{$editFormField['COLUMN_COMMENT']}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ziduanming" class="col-sm-2 control-label">字段名称（字母开头）：</label>
+                    <div class="col-sm-2">
+                      <input type="text" name="ziduanming" class="form-control" id="ziduanming" value="{$editFormField['COLUMN_NAME']}" readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dtype" class="col-sm-2 control-label">数据类型：</label>
+                    <div class="col-sm-6">
+                        <td bgcolor="#FFFFFF">
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype1" value="varchar" checked="1">单行文本(varchar)</div>
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype2" value="char">单行文本(char)</div>
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype3" value="mediumtext">多行文本(text)</div>
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype6" value="int">整数类型(int)</div>
+                            <br class="cls">
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype13" value="varchar">使用option下拉框</div>
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype14" value="varchar">使用radio选项卡</div>
+                            <div class="nw col-sm-3"><input type="radio" class="np" name="dtype" id="dtype15" value="varchar">Checkbox多选框</div>
+                                   </td>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vdefault" class="col-sm-2 control-label">默认值：</label>
+                    <div class="col-sm-6">
+                      <input type="text" name="vdefault" class="form-control" id="vdefault" value="{$editFormField['COLUMN_DEFAULT']}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="maxlength" class="col-sm-2 control-label">最大长度  (文本数据必须填写，大于255为text类型)：</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="maxlength" class="form-control" id="maxlength" value="{$editFormField['CHARACTER_MAXIMUM_LENGTH']}">
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-default" type="submit" value="确定">
+                  </div>
+                </div>
+              </form>
+
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+<script>
+
+    $(".btn").click('on',function() {
+        var tishi = $("#tishi").val();
+        if (!tishi) {
+            alert("发表提示文字 必须要填写啊！");
+            return false;
+        }else if (!$("#ziduanming").val()) {
+            alert("字段名称 必须要填写啊！");
+            return false;
+        }
+    });
+</script>
+</body>
+</html>

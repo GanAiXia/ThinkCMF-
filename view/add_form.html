@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <include file="public/head"/>
+    <title>ThinkCMF5自定义表单系统</title>
+    <meta name="description" content="ThinkCMF5自定义表单系统">
+    <meta name="keywords" content="ThinkCMF5自定义表单系统">
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>自定义表单添加 -> 新增自定义表单</a><a href="{:cmf_plugin_url('bslform://AdminIndex/index')}">返回表单列表页</a></li>
+    </ul>
+    <div class="common-form">
+        <div class="well">
+            <form class="form-horizontal" method="post" action="{:cmf_plugin_url('bslform://AdminIndex/addFormDone')}">
+                <div class="form-group"></div>
+                <div class="form-group">
+                  <label for="inputDiyid3" class="col-sm-2 control-label">diyid:</label>
+                  <div class="col-sm-1">
+                    <input type="text" name="diyid" class="form-control" id="inputDiyid3" value="{$diyid}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">自定义表单名称</label>
+                  <div class="col-sm-2">
+                    <input type="text" name="name" class="form-control" id="inputPassword3" value="自定义表单{$diyid}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputTable3" class="col-sm-2 control-label">数据表:</label>
+                  <div class="col-sm-2">
+                    <input type="text" name="table" class="form-control" id="inputTable3" value="cmf_diyform{$diyid}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputInfo3" class="col-sm-2 control-label">字段配置</label>
+                  <div class="col-sm-5" style="line-height: 35px">
+                    <p>建立自定义表单后在“更改”自定义表单的地方添加字段即可。</p>
+                  </div>
+                </div>    
+                
+                <div class="form-group">
+                        <label for="inputposttemplate3" class="col-sm-2 control-label">发布模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="posttemplate" class="form-control" id="inputposttemplate3" value="post_diyform{$diyid}.htm">
+                        </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="inputlisttemplate3" class="col-sm-2 control-label">列表模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="listtemplate" class="form-control" id="inputlisttemplate3" value="list_diyform{$diyid}.htm">
+                        </div>
+                </div>
+
+                
+                <div class="form-group">
+                        <label for="inputviewtemplate3" class="col-sm-2 control-label">内容模板:</label>
+                        <div class="col-sm-2">
+                          <input type="text" name="viewtemplate" class="form-control" id="inputviewtemplate3" value="view_diyform{$diyid}.htm">
+                        </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="inlineRadio1" class="col-sm-2 control-label">前台列表和内容页公开？</label>
+                        <div class="col-sm-6">
+                                <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio1" value="0"> 完全公开
+                                      </label>
+                                      <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio2" value="1" checked> 公开审核过的
+                                      </label>
+                                      <label class="radio-inline">
+                                        <input type="radio" name="public" id="inlineRadio3" value="3"> 不公开
+                                      </label>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                        <input class="btn btn-default" type="submit" value="确定">
+                  </div>
+                </div>
+              </form>
+              
+
+        </div>
+    </div>
+</div>
+<include file="public/scripts"/>
+</body>
+</html>
